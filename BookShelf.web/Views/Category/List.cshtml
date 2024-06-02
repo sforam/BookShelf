@@ -5,7 +5,27 @@
 }
 @model List<BookShelf.web.Models.Category.category>
 
-<h1>List Categories</h1>
+
+<div class="container">
+	<div class="row pt-4 pb-3">
+		<div class="col-6">
+			<h1>List Categories</h1>
+		</div>
+
+
+
+		<div class="col-6 text-end">
+			<a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+			<i class="fa-solid fa-plus"></i> Create New Category
+
+			</a>
+		</div>
+	
+	</div>
+	
+
+</div>
+
 
 <table class="table">
 	<thead>

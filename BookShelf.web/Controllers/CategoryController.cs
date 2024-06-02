@@ -28,5 +28,11 @@ namespace BookShelf.web.Controllers
             return View(objCategoryList);
 
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
     }
 }
