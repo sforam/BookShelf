@@ -12,13 +12,17 @@
             <hr />
 
         </div>
+
+       @* <div asp-validation-summary="ModelOnly"  ></div>*@
         <div class="mb-3 p-1">
-            <label class="p-0">Category Name</label>
-            <input type="text" class="form-control" />
+            <label class="p-0"  asp-for="Name" ></label>
+            <input asp-for="Name"  type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="mb-3 p-1">
-            <label class="p-0">Display Order</label>
-            <input type="text" class="form-control" />
+            <label class="p-0" asp-for="DisplayOrder"></label>
+            <input asp-for="DisplayOrder" type="text" class="form-control" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
         </div>
 
         <div class="row">
@@ -38,3 +42,13 @@
 
 </form>
 
+
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+
+}

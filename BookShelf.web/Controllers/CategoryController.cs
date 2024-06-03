@@ -16,10 +16,6 @@ namespace BookShelf.web.Controllers
         {
             this.dbContext = dbContext;
         }
-
-
-
-        
         public IActionResult List()
 
         {
@@ -32,6 +28,30 @@ namespace BookShelf.web.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(category obj)
+        {
+
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "DisplayOrder cannot exactly match the name");
+            }
+
+
+
+
+            if (ModelState.IsValid)
+            {
+                dbContext.Categories.Add(obj);
+                dbContext.SaveChanges();
+                return RedirectToAction("List", "Category");
+
+
+            }
+
+            return View(obj);
         }
 
     }
