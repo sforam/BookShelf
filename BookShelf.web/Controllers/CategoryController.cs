@@ -89,8 +89,53 @@ namespace BookShelf.web.Controllers
 
             }
 
-            return View(obj);
+            return View();
         }
+
+        public IActionResult Delete(int? id)
+        {
+
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+
+            }
+            category? categoryFromDb = dbContext.Categories.Find(id);
+            /*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
+               category? categoryFromDb2 = dbContext.Categories.Where(u => u.Id == id).FirstOrDefault();*/
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(categoryFromDb);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePOST(int? id)
+        {
+
+            category? obj = dbContext.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+                dbContext.Remove(obj);
+                dbContext.SaveChanges();
+                return RedirectToAction("List", "Category");
+
+
+            
+
+            
+        }
+
+
+
+
+
+
 
     }
 
