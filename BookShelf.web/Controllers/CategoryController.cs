@@ -2,6 +2,7 @@
 using BookShelf.web.Models.Category;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace BookShelf.web.Controllers
 {
@@ -54,5 +55,45 @@ namespace BookShelf.web.Controllers
             return View(obj);
         }
 
+        public IActionResult Edit(int? id)
+        {
+
+            if(id==0 || id == null)
+            {
+                return NotFound();
+
+            }
+            category? categoryFromDb = dbContext.Categories.Find(id);
+         /*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
+            category? categoryFromDb2 = dbContext.Categories.Where(u => u.Id == id).FirstOrDefault();*/
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(categoryFromDb);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(category obj)
+        {
+
+         
+            if (ModelState.IsValid)
+            {
+                dbContext.Categories.Update(obj);
+                dbContext.SaveChanges();
+                return RedirectToAction("List", "Category");
+
+
+            }
+
+            return View(obj);
+        }
+
     }
+
+
 }
+
