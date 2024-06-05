@@ -47,12 +47,13 @@ namespace BookShelf.web.Controllers
             {
                 dbContext.Categories.Add(obj);
                 dbContext.SaveChanges();
+                TempData["Success"] = "Category Created Successfully";
                 return RedirectToAction("List", "Category");
 
 
             }
 
-            return View(obj);
+            return View();
         }
 
         public IActionResult Edit(int? id)
@@ -84,7 +85,8 @@ namespace BookShelf.web.Controllers
             {
                 dbContext.Categories.Update(obj);
                 dbContext.SaveChanges();
-                return RedirectToAction("List", "Category");
+				TempData["Success"] = "Category updated Successfully";
+				return RedirectToAction("List", "Category");
 
 
             }
@@ -123,7 +125,8 @@ namespace BookShelf.web.Controllers
             }
                 dbContext.Remove(obj);
                 dbContext.SaveChanges();
-                return RedirectToAction("List", "Category");
+			    TempData["Success"] = "Category Deleted Successfully";
+			    return RedirectToAction("List", "Category");
 
 
             
