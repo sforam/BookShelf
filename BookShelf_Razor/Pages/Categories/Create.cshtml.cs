@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookShelf_Razor.Pages.Categories
 {
-    public class CreateModel : PageModel
+
+	[BindProperties]
+	public class CreateModel : PageModel
+
     {
         private readonly ApplicationDbContext dbContext;
-
+       
         public category category { get; set; }
 
         public CreateModel(ApplicationDbContext dbContext)
@@ -19,5 +22,16 @@ namespace BookShelf_Razor.Pages.Categories
         public void OnGet()
         {
         }
+
+		public IActionResult OnPost()
+        {
+            dbContext.Categories.Add(category);
+            dbContext.SaveChanges();
+            TempData["Success"] = "Category Created Successfully";
+            return RedirectToPage("List");
+
+        }
+
+
     }
 }
