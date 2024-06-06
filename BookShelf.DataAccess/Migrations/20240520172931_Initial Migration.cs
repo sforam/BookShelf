@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BookShelf.web.Migrations
+namespace BookShelf.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

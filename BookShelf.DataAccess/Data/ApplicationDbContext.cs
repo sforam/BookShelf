@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace BookShelf.web.Data
+namespace BookShelf.DataAccess.Data
 {
     public class ApplicationDbContext:DbContext
     {
@@ -11,7 +11,7 @@ namespace BookShelf.web.Data
         {
             
         }
-        public DbSet<category> Categories { get; set; }
+		public DbSet<category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
