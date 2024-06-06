@@ -1,8 +1,8 @@
-﻿using BookShelf.web.Data;
-using BookShelf.web.Models.Category;
+﻿
+using BookShelf.DataAccess.Data;
+using BookShelf.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+
 
 namespace BookShelf.web.Controllers
 {

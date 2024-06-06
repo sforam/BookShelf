@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookShelf.web.Models.Category;
+namespace BookShelf.Models;
 
 public class category
 {
@@ -18,7 +18,7 @@ public class category
 
 
     [DisplayName("Display Order")] //this is called Annotation
-    [Range(1,100,ErrorMessage= "Display Order must be between 1 and 100")]
+    [Range(1, 100, ErrorMessage = "Display Order must be between 1 and 100")]
     public int DisplayOrder { get; set; }
 
 

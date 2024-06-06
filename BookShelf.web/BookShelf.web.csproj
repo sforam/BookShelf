@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookShelf.DataAccess\BookShelf.DataAccess.csproj" />
+    <ProjectReference Include="..\BookShelf.Models\BookShelf.Models.csproj" />
+  </ItemGroup>
+
 </Project>
