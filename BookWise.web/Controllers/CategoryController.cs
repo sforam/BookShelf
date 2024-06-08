@@ -1,27 +1,28 @@
 ﻿
-using BookShelf.DataAccess.Data;
-using BookShelf.Models;
+using BookWise.DataAccess.Data;
+using BookWise.DataAccess.Repository.IRepository;
+using BookWise.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace BookShelf.web.Controllers
+namespace BookWise.web.Controllers
 {
 
 
     
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly ICategoryRepository _categoryRepo;
 
-        public CategoryController(ApplicationDbContext dbContext)
+        public CategoryController(ICategoryRepository dbContext)
         {
-            this.dbContext = dbContext;
+            this._categoryRepo = dbContext;
         }
         public IActionResult List()
 
         {
             
-            List<category> objCategoryList=dbContext.Categories.ToList();
+            List<category> objCategoryList = _categoryRepo.GetAll().ToList();
             return View(objCategoryList);
 
         }
@@ -45,8 +46,8 @@ namespace BookShelf.web.Controllers
 
             if (ModelState.IsValid)
             {
-                dbContext.Categories.Add(obj);
-                dbContext.SaveChanges();
+				_categoryRepo.Add(obj);
+				_categoryRepo.Save();
                 TempData["Success"] = "Category Created Successfully";
                 return RedirectToAction("List", "Category");
 
@@ -64,7 +65,7 @@ namespace BookShelf.web.Controllers
                 return NotFound();
 
             }
-            category? categoryFromDb = dbContext.Categories.Find(id);
+            category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
          /*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
             category? categoryFromDb2 = dbContext.Categories.Where(u => u.Id == id).FirstOrDefault();*/
             if (categoryFromDb == null)
@@ -83,8 +84,8 @@ namespace BookShelf.web.Controllers
          
             if (ModelState.IsValid)
             {
-                dbContext.Categories.Update(obj);
-                dbContext.SaveChanges();
+				_categoryRepo.Update(obj);
+				_categoryRepo.Save();
 				TempData["Success"] = "Category updated Successfully";
 				return RedirectToAction("List", "Category");
 
@@ -102,10 +103,10 @@ namespace BookShelf.web.Controllers
                 return NotFound();
 
             }
-            category? categoryFromDb = dbContext.Categories.Find(id);
-            /*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
+            category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
+			/*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
                category? categoryFromDb2 = dbContext.Categories.Where(u => u.Id == id).FirstOrDefault();*/
-            if (categoryFromDb == null)
+			if (categoryFromDb == null)
             {
                 return NotFound();
             }
@@ -118,13 +119,13 @@ namespace BookShelf.web.Controllers
         public IActionResult DeletePOST(int? id)
         {
 
-            category? obj = dbContext.Categories.Find(id);
-            if (obj == null)
+            category? obj = _categoryRepo.Get(u => u.Id == id);
+			if (obj == null)
             {
                 return NotFound();
             }
-                dbContext.Remove(obj);
-                dbContext.SaveChanges();
+			_categoryRepo.Remove(obj);
+			_categoryRepo.Save();
 			    TempData["Success"] = "Category Deleted Successfully";
 			    return RedirectToAction("List", "Category");
 
