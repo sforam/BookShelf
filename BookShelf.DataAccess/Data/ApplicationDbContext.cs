@@ -36,7 +36,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 150,
                     Price = 140,
                     Price50 = 130,
-                    Price100 = 120
+                    Price100 = 120,
+                    CategoryId=1,
+                    ImageUrl=""
                 },
                 new Product
                 {
@@ -48,7 +50,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 45,
                     Price = 40,
                     Price50 = 35,
-                    Price100 = 30
+                    Price100 = 30,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -60,7 +64,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 60,
                     Price = 55,
                     Price50 = 50,
-                    Price100 = 45
+                    Price100 = 45,
+                    CategoryId = 3,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -72,7 +78,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 80,
                     Price = 75,
                     Price50 = 70,
-                    Price100 = 65
+                    Price100 = 65,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -84,7 +92,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 35,
                     Price = 30,
                     Price50 = 28,
-                    Price100 = 25
+                    Price100 = 25,
+                    CategoryId = 3,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -96,7 +106,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 50,
                     Price = 45,
                     Price50 = 42,
-                    Price100 = 40
+                    Price100 = 40,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -108,7 +120,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 55,
                     Price = 50,
                     Price50 = 45,
-                    Price100 = 40
+                    Price100 = 40,
+                    CategoryId = 3,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -120,7 +134,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 65,
                     Price = 60,
                     Price50 = 55,
-                    Price100 = 50
+                    Price100 = 50,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -132,7 +148,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 70,
                     Price = 65,
                     Price50 = 60,
-                    Price100 = 55
+                    Price100 = 55,
+                    CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -144,7 +162,9 @@ namespace BookShelf.DataAccess.Data
                     ListPrice = 75,
                     Price = 70,
                     Price50 = 65,
-                    Price100 = 60
+                    Price100 = 60,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 }
 
 

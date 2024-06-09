@@ -3,6 +3,7 @@ using BookShelf.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShelf.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240608211738_AddForeignKeyForCategoryProductRelation")]
+    partial class AddForeignKeyForCategoryProductRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,10 +44,6 @@ namespace BookShelf.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ISBN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -78,7 +77,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "ETO9999001",
-                            ImageUrl = "",
                             ListPrice = 150.0,
                             Price = 140.0,
                             Price100 = 120.0,
@@ -92,7 +90,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "MBM777777701",
-                            ImageUrl = "",
                             ListPrice = 45.0,
                             Price = 40.0,
                             Price100 = 30.0,
@@ -106,7 +103,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "WTF5555501",
-                            ImageUrl = "",
                             ListPrice = 60.0,
                             Price = 55.0,
                             Price100 = 45.0,
@@ -120,7 +116,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "SON3333333301",
-                            ImageUrl = "",
                             ListPrice = 80.0,
                             Price = 75.0,
                             Price100 = 65.0,
@@ -134,7 +129,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "JTT1111111101",
-                            ImageUrl = "",
                             ListPrice = 35.0,
                             Price = 30.0,
                             Price100 = 25.0,
@@ -148,7 +142,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "SOT000000001",
-                            ImageUrl = "",
                             ListPrice = 50.0,
                             Price = 45.0,
                             Price100 = 40.0,
@@ -162,7 +155,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "GOH000000002",
-                            ImageUrl = "",
                             ListPrice = 55.0,
                             Price = 50.0,
                             Price100 = 40.0,
@@ -176,7 +168,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "WOC000000003",
-                            ImageUrl = "",
                             ListPrice = 65.0,
                             Price = 60.0,
                             Price100 = 50.0,
@@ -190,7 +181,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "FOP000000004",
-                            ImageUrl = "",
                             ListPrice = 70.0,
                             Price = 65.0,
                             Price100 = 55.0,
@@ -204,7 +194,6 @@ namespace BookShelf.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.\r\n\r\nNunc feugiat mi a tellus consequat imperdiet.",
                             ISBN = "EOP000000005",
-                            ImageUrl = "",
                             ListPrice = 75.0,
                             Price = 70.0,
                             Price100 = 60.0,

@@ -1,6 +1,9 @@
 ﻿using BookShelf.DataAccess.Repository.IRepository;
 using BookShelf.Models;
+using BookShelf.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace BookShelf.web.Areas.Admin.Controllers
 {
@@ -19,38 +22,53 @@ namespace BookShelf.web.Areas.Admin.Controllers
         {
 
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+          
+
             return View(objProductList);
 
         }
 
         public IActionResult Create()
         {
-            return View();
+            ProductVM productVM = new()
+            {
+                CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                Product = new Product()
+
+            };
+            return View(productVM);
+
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Create(ProductVM productVM)
         {
-
-           /* if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("Name", "DisplayOrder cannot exactly match the name");
-            }
-*/
-
-
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["Success"] = "Product Created Successfully";
                 return RedirectToAction("List", "Product");
 
 
             }
+            else
+            {
 
-            return View();
+                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+                
+                return View(productVM);
+            }
+            
         }
 
         public IActionResult Edit(int? id)
