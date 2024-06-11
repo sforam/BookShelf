@@ -21,24 +21,48 @@ namespace BookShelf.DataAccess.Repository
             this.dbContext = dbContext;
             this.dbSet = dbContext.Set<T>();
 
+            dbContext.Products.Include(u => u.category).Include(u => u.CategoryId);
             //dbContext.Categories == dbSet
-            
+
         }
         public void Add(T entity)
         {
            dbSet.Add(entity);
+           
         }
 
-        public T GET(Expression<Func<T, bool>> filter)
+        public T GET(Expression<Func<T, bool>> filter, String? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var property in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperties);
+                }
+            }
+
+
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        //Category,CoverType
+
+        public IEnumerable<T> GetAll(String? includeProperties = null)
         {
            IQueryable<T> query = dbSet;
+            if(!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var property in includeProperties
+                    .Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries)) 
+                {
+                    query = query.Include(includeProperties);
+                }
+            }
+
+
             return query.ToList();
         }
 

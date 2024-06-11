@@ -9,8 +9,8 @@ namespace BookShelf.DataAccess.Repository.IRepository
 {
         public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T GET(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> GetAll(String? includeProperties = null);
+        T GET(Expression<Func<T, bool>> filter, String? includeProperties = null);
         void  Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
