@@ -5,9 +5,10 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="text-white py-2">
-                    @(Model.Product.Id!=0?"Update":"Create" )
+                    @(Model.Product.Id != 0 ? "Update" : "Create")
 
-                    Product</h2>
+                    Product
+                </h2>
             </div>
         </div>
     </div>
@@ -150,10 +151,10 @@
                 </div>
                 <div class="col-2">
                     <img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9 " />
-                </div>  
+                </div>
             </div>
 
-            
+
 
         </form>
 
@@ -168,20 +169,20 @@
 @section Scripts
 {
 
- 
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount checklist media casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent',
-                tinycomments_mode: 'embedded',
-                tinycomments_author: 'Author name',
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount checklist media casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
 
-            });
+        });
     </script>
 
-  
+
 
     @{
         <partial name="_ValidationScriptsPartial" />

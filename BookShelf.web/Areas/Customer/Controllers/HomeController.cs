@@ -1,3 +1,5 @@
+using BookShelf.DataAccess.Repository;
+using BookShelf.DataAccess.Repository.IRepository;
 using BookShelf.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,14 +11,23 @@ namespace BookShelf.web.Areas.Customer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties:"category");
+            return View(productList);
+        }
+        public IActionResult Details(int productId)
+        {
+            Product product = _unitOfWork.Product.GET(u => u.Id == productId, includeProperties: "category");
+            return View(product);
         }
 
         public IActionResult Privacy()
