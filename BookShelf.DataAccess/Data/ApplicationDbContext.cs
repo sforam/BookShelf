@@ -1,11 +1,12 @@
 ﻿
 using BookShelf.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace BookShelf.DataAccess.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext:IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         
@@ -17,6 +18,8 @@ namespace BookShelf.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<category>().HasData(
                 new category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new category { Id = 2, Name = "SciFic", DisplayOrder = 2 },
