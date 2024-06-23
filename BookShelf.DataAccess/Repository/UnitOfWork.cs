@@ -16,6 +16,9 @@ namespace BookShelf.DataAccess.Repository
 
         public IProductRepository Product { get; private set; }
 
+        public ICompanyRepository Company { get; private set; }
+
+        
 
         public UnitOfWork(ApplicationDbContext dbContext) 
         {
@@ -23,6 +26,7 @@ namespace BookShelf.DataAccess.Repository
             Category = new CategoryRepository(dbContext);
 
             Product = new ProductRepository(dbContext);
+            Company = new CompanyRepository(dbContext);
 
         }
 
