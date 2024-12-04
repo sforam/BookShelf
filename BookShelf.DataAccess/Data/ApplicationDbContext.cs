@@ -30,6 +30,11 @@ namespace BookShelf.DataAccess.Data
                 new category { Id = 2, Name = "SciFic", DisplayOrder = 2 },
                 new category { Id = 3, Name = "Thriller", DisplayOrder = 3 }
                 );
+            modelBuilder.Entity<company>().HasData(
+               new company { Id = 4, Name = "Global Synergyy", StreetAddress = "789 Enterprise Lane",PostalCode="10001", State = "New York", City = "New York City" },
+               new company { Id = 5, Name = "Innovatech Corpp", StreetAddress = "123 Innovation Way", PostalCode="94103",State = "California", City = "San Francisco" },
+               new  company { Id = 6, Name = "Future Dynamicss", StreetAddress = "456 Vision Drive",PostalCode="73301", State = "Texas", City = "Austin" }
+               );
 
 
 

@@ -4,6 +4,7 @@ using BookShelf.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShelf.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625152439_Addcompany")]
+    partial class Addcompany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,6 +273,9 @@ namespace BookShelf.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PostalCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -282,35 +288,6 @@ namespace BookShelf.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 4,
-                            City = "New York City",
-                            Name = "Global Synergyy",
-                            PostalCode = "10001",
-                            State = "New York",
-                            StreetAddress = "789 Enterprise Lane"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            City = "San Francisco",
-                            Name = "Innovatech Corpp",
-                            PostalCode = "94103",
-                            State = "California",
-                            StreetAddress = "123 Innovation Way"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            City = "Austin",
-                            Name = "Future Dynamicss",
-                            PostalCode = "73301",
-                            State = "Texas",
-                            StreetAddress = "456 Vision Drive"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

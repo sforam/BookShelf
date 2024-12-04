@@ -12,7 +12,7 @@ namespace BookShelf.DataAccess.Repository
     public class ProductRepository : Repository<Product>, IProductRepository
     {
 
-        private ApplicationDbContext dbContext;
+        private readonly ApplicationDbContext dbContext;
 
         public ProductRepository(ApplicationDbContext dbContext) : base(dbContext)
         {

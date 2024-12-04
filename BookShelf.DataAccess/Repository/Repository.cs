@@ -16,7 +16,7 @@ namespace BookShelf.DataAccess.Repository
         private ApplicationDbContext dbContext;
 
         internal DbSet<T> dbSet;
-        public Repository(ApplicationDbContext dbContext) 
+        public Repository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
             this.dbSet = dbContext.Set<T>();
@@ -27,8 +27,8 @@ namespace BookShelf.DataAccess.Repository
         }
         public void Add(T entity)
         {
-           dbSet.Add(entity);
-           
+            dbSet.Add(entity);
+
         }
 
         public T GET(Expression<Func<T, bool>> filter, String? includeProperties = null)
@@ -52,11 +52,11 @@ namespace BookShelf.DataAccess.Repository
 
         public IEnumerable<T> GetAll(String? includeProperties = null)
         {
-           IQueryable<T> query = dbSet;
-            if(!string.IsNullOrEmpty(includeProperties))
+            IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var property in includeProperties
-                    .Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries)) 
+                foreach (var property in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProperties);
                 }

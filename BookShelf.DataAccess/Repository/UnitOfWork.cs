@@ -18,7 +18,7 @@ namespace BookShelf.DataAccess.Repository
 
         public ICompanyRepository Company { get; private set; }
 
-        
+
 
         public UnitOfWork(ApplicationDbContext dbContext) 
         {
