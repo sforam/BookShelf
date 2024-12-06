@@ -67,7 +67,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
                 return NotFound();
 
             }
-            category? categoryFromDb = _unitOfWork.Category.GET(u => u.Id == id);
+            category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             /*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
                category? categoryFromDb2 = dbContext.Categories.Where(u => u.Id == id).FirstOrDefault();*/
             if (categoryFromDb == null)
@@ -105,7 +105,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
                 return NotFound();
 
             }
-            category? categoryFromDb = _unitOfWork.Category.GET(u => u.Id == id);
+            category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
 
             /*   category? categoryFromDb1 = dbContext.Categories.FirstOrDefault(u=>u.Id==id);
                category? categoryFromDb2 = dbContext.Categories.Where(u => u.Id == id).FirstOrDefault();*/
@@ -122,7 +122,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
         public IActionResult DeletePOST(int? id)
         {
 
-            category? obj = _unitOfWork.Category.GET(u => u.Id == id);
+            category? obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();

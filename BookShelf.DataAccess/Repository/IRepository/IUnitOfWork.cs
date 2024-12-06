@@ -12,9 +12,10 @@ namespace BookShelf.DataAccess.Repository.IRepository
 
         IProductRepository Product { get; }
 
-
+        IShoppingCartRepository ShoppingCart { get; }
         ICompanyRepository Company { get; }
 
+        IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
 }

@@ -41,7 +41,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
             else
             {
                 //update
-                company companyObj = _unitOfWork.Company.GET(u => u.Id == id);
+                company companyObj = _unitOfWork.Company.Get(u => u.Id == id);
                 return View(companyObj);
 
             }
@@ -101,7 +101,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var CompanyToBeDeleted = _unitOfWork.Company.GET(u => u.Id == id);
+            var CompanyToBeDeleted = _unitOfWork.Company.Get(u => u.Id == id);
             if (CompanyToBeDeleted == null)
             {
                 return Json(new { success = false, message = "Error While deleting" });

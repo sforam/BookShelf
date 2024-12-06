@@ -18,16 +18,18 @@ namespace BookShelf.DataAccess.Repository
 
         public ICompanyRepository Company { get; private set; }
 
+        public IShoppingCartRepository ShoppingCart { get; private set; }
 
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
         public UnitOfWork(ApplicationDbContext dbContext) 
         {
             this.dbContext = dbContext;
             Category = new CategoryRepository(dbContext);
-
+            ShoppingCart = new ShoppingCartRepository(dbContext);
             Product = new ProductRepository(dbContext);
             Company = new CompanyRepository(dbContext);
-
+            ApplicationUser = new ApplicationUserRepository(dbContext);
         }
 
 

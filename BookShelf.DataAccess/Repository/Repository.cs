@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BookShelf.DataAccess.Data;
 using BookShelf.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
 namespace BookShelf.DataAccess.Repository
@@ -31,9 +32,16 @@ namespace BookShelf.DataAccess.Repository
 
         }
 
-        public T GET(Expression<Func<T, bool>> filter, String? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, String? includeProperties = null,bool tracked=false)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+
+            if(tracked){
+                query = dbSet;
+            }
+            else{
+                 query = dbSet.AsNoTracking();
+            }
             query = query.Where(filter);
             if (!string.IsNullOrEmpty(includeProperties))
             {
@@ -50,9 +58,15 @@ namespace BookShelf.DataAccess.Repository
 
         //Category,CoverType
 
-        public IEnumerable<T> GetAll(String? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, String? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(filter != null)
+            {
+
+                query = query.Where(filter);
+
+            }
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var property in includeProperties

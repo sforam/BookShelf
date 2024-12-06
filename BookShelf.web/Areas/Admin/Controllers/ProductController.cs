@@ -50,7 +50,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
             else
             {
                 //update
-                productVM.Product = _unitOfWork.Product.GET(u => u.Id == id);
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
                 return View(productVM);
 
             }
@@ -141,7 +141,7 @@ namespace BookShelf.web.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var productToBeDeleted = _unitOfWork.Product.GET(u => u.Id == id);
+            var productToBeDeleted = _unitOfWork.Product.Get(u => u.Id == id);
             if(productToBeDeleted == null)
             {
                 return Json(new { success = false, message = "Error While deleting" });
