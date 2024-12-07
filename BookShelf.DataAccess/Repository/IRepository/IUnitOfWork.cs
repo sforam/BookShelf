@@ -15,6 +15,8 @@ namespace BookShelf.DataAccess.Repository.IRepository
         IShoppingCartRepository ShoppingCart { get; }
         ICompanyRepository Company { get; }
 
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailRepository OrderDetail { get; }
         IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
