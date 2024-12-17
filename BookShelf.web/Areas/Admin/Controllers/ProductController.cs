@@ -1,6 +1,8 @@
 ﻿using BookShelf.DataAccess.Repository.IRepository;
 using BookShelf.Models;
 using BookShelf.Models.ViewModels;
+using BookShelf.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Collections.Generic;
 namespace BookShelf.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin)]
 
     public class ProductController : Controller
     {
