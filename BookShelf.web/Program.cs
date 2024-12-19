@@ -32,6 +32,12 @@ builder.Services.ConfigureApplicationCookie(options => {
 
 });
 
+builder.Services.AddAuthentication().AddFacebook(options => {
+    options.AppId = "1777424959739203";
+    options.AppSecret = "53c0d168849f261268dd720a14f6cf0c";
+
+});
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
