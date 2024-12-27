@@ -3,6 +3,7 @@ using BookShelf.Models;
 using BookShelf.Models.ViewModels;
 using BookShelf.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using System.Security.Claims;
@@ -16,12 +17,13 @@ namespace BookShelf.web.Areas.Customer.Controllers
     {
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender;
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
-        public CartController(IUnitOfWork unitOfWork)
+        public CartController(IUnitOfWork unitOfWork,IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
-
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -183,6 +185,7 @@ namespace BookShelf.web.Areas.Customer.Controllers
                 }
                 HttpContext.Session.Clear();
             }
+            _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order ~Book Shelf ", $"<p>New Order Created - {orderHeader.Id} </p>");
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
                 .GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
 
